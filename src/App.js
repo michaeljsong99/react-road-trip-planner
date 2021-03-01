@@ -2,6 +2,9 @@ import './App.css';
 import ParkCard from './ParkCard.js';
 import ImageSlider from './ImageSlider.js';
 import {SliderData} from './SliderData.js';
+import InputCard from './InputCard.js'
+import Zoom from 'react-reveal/Zoom';
+import {useEffect} from 'react'
 
 // function App() {
 //   return (
@@ -16,11 +19,17 @@ import {SliderData} from './SliderData.js';
 // }
 
 function App() {
+
   return (
     <div>
-        <ImageSlider slides={SliderData}/>
-        <ImageSlider slides={SliderData}/>
-        <ImageSlider slides={SliderData}/>
+        <Zoom>
+          <InputCard></InputCard>
+        </Zoom>
+        <Zoom>
+          <ImageSlider slides={SliderData}/>
+          <ImageSlider slides={SliderData}/>
+          <ImageSlider slides={SliderData}/>
+        </Zoom>
     </div>
   );
 }
