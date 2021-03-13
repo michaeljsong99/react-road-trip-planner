@@ -23,6 +23,24 @@ const InputCard = () => {
                             <Dropdown.Item>Something else</Dropdown.Item>
                             <Dropdown.Item>Something else</Dropdown.Item>
                             <Dropdown.Item>Something else</Dropdown.Item>
+                            <Dropdown.Item>Another action</Dropdown.Item>
+                            <Dropdown.Item>Something else</Dropdown.Item>
+                            <Dropdown.Item>Something else</Dropdown.Item>
+                            <Dropdown.Item>Something else</Dropdown.Item>
+                            <Dropdown.Item>Something else</Dropdown.Item>
+                            <Dropdown.Item>Something else</Dropdown.Item>
+                            <Dropdown.Item>Another action</Dropdown.Item>
+                            <Dropdown.Item>Something else</Dropdown.Item>
+                            <Dropdown.Item>Something else</Dropdown.Item>
+                            <Dropdown.Item>Something else</Dropdown.Item>
+                            <Dropdown.Item>Something else</Dropdown.Item>
+                            <Dropdown.Item>Something else</Dropdown.Item>
+                            <Dropdown.Item>Another action</Dropdown.Item>
+                            <Dropdown.Item>Something else</Dropdown.Item>
+                            <Dropdown.Item>Something else</Dropdown.Item>
+                            <Dropdown.Item>Something else</Dropdown.Item>
+                            <Dropdown.Item>Something else</Dropdown.Item>
+                            <Dropdown.Item>Something else</Dropdown.Item>
                         </DropdownButton>
                     </div>
                     <div style={{paddingTop:'20px', paddingBottom:'20px', display:'flex'}}>

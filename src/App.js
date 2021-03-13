@@ -3,6 +3,7 @@ import ParkCard from './ParkCard.js';
 import ImageSlider from './ImageSlider.js';
 import {SliderData} from './SliderData.js';
 import InputCard from './InputCard.js'
+import InputCard2 from './InputCard2.js'
 import Zoom from 'react-reveal/Zoom';
 import {useEffect} from 'react'
 
@@ -23,7 +24,7 @@ function App() {
   return (
     <div>
         <Zoom>
-          <InputCard></InputCard>
+          <InputCard2></InputCard2>
         </Zoom>
         <Zoom>
           <ImageSlider slides={SliderData}/>
