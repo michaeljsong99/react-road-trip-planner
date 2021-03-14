@@ -5,6 +5,23 @@ import './InputCard2.css'
 
 const InputCard2 = () => {
 
+  const logCity = (city) => {
+      console.log('City: ' + city)
+  }
+
+  const logDistance = (distance) => {
+      console.log('Distance: ' + String(distance))
+  }
+
+  const onKeyUp = (event) => {
+      if (event.charCode === 13) {
+          console.log('ENTER')
+      }
+      else {
+        console.log(event.target.value)
+      }
+  }
+
   const renderCard = () => {
       return (
         <Card className="mainCard">
@@ -14,11 +31,13 @@ const InputCard2 = () => {
             <Form>
                 <Form.Row className="align-items-center">
                     <Col xs="auto">
-
                         <Form.Group as={Col} controlId="formGridCity">
-
                             <Form.Label>Starting City</Form.Label>
-                            <Form.Control as="select" defaultValue="Randomize">
+                            <Form.Control 
+                                as="select" 
+                                onChange = { (event) => { console.log(event.target.value) } }
+                                defaultValue="Randomize">
+                                
                                 <option>Randomize</option>
                                 <option>City1</option>
                                 <option>City2</option>
@@ -33,7 +52,11 @@ const InputCard2 = () => {
                     <Col xs="auto">
                         <Form.Group as={Col} controlId="formGridPassword">
                             <Form.Label>Maximum Driving Distance </Form.Label>
-                            <Form.Control type="distance" placeholder="Distance"/>
+                            <Form.Control 
+                                type="distance" 
+                                onKeyUp= { (event) => { onKeyUp(event) } }
+                                onKeyPress={(event) => { event.key === 'Enter' && event.preventDefault(); }}
+                                placeholder="Distance"/>
                             <Form.Text id="distanceHelpBlock" muted>
                                 Input the maximum total distance you are willing to drive.
                             </Form.Text>
@@ -42,9 +65,12 @@ const InputCard2 = () => {
                     <Col xs="auto">
                         <Form.Group as={Col} controlId="formGridUnits">
                             <Form.Label>Units</Form.Label>
-                            <Form.Control as="select" defaultValue="mi">
-                                <option>mi</option>
-                                <option>km</option>
+                            <Form.Control 
+                                as="select" 
+                                onChange = { (event) => { console.log(event.target.value) } }
+                                defaultValue="mi">
+                                    <option>mi</option>
+                                    <option>km</option>
                             </Form.Control>
                             <Form.Text id="unitsHelpBlock" muted>
                                 Miles or kilometers.
@@ -63,7 +89,6 @@ const InputCard2 = () => {
                     </Col>
                 </Form.Row>
             </Form>
-
         </Card>
       )
   }
