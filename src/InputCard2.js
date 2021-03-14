@@ -36,6 +36,7 @@ const InputCard2 = () => {
                             <Form.Control 
                                 as="select" 
                                 onChange = { (event) => { console.log(event.target.value) } }
+                                onKeyPress={(event) => { event.key === 'Enter' && event.preventDefault(); }}
                                 defaultValue="Randomize">
                                 
                                 <option>Randomize</option>
@@ -68,6 +69,7 @@ const InputCard2 = () => {
                             <Form.Control 
                                 as="select" 
                                 onChange = { (event) => { console.log(event.target.value) } }
+                                onKeyPress={(event) => { event.key === 'Enter' && event.preventDefault(); }}
                                 defaultValue="mi">
                                     <option>mi</option>
                                     <option>km</option>
