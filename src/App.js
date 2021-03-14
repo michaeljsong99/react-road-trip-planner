@@ -1,11 +1,10 @@
 import './App.css';
+import CityCard from './CityCard.js';
 import ParkCard from './ParkCard.js';
 import InputCard from './InputCard.js'
-import InputCard2 from './InputCard2.js'
 import Zoom from 'react-reveal/Zoom';
 import Typewriter from 'typewriter-effect';
-import {useEffect} from 'react'
-
+import {Button} from "react-bootstrap";
 
 function App() {
 
@@ -16,6 +15,7 @@ function App() {
 
   return (
     <div className="App">
+        <Button className="App-resetButton">Reset</Button>
         <div className="App-typewriter">
           <Typewriter
             options={{
@@ -29,12 +29,14 @@ function App() {
           />
         </div>
         <Zoom>
-          <InputCard2></InputCard2>
+          <InputCard></InputCard>
         </Zoom>
         <Zoom>
+          <CityCard type='Starting'></CityCard>
           <ParkCard></ParkCard>
           <ParkCard></ParkCard>
           <ParkCard></ParkCard>
+          <CityCard type='Ending'></CityCard>
         </Zoom>
     </div>
   );
