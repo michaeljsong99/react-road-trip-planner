@@ -14,6 +14,76 @@ function App() {
   var string3 = 'With 200+ National Park Sites across the U.S., the possibiliities are endless!'
   var string2 = 'To get started, select your configurations in the input panel below.'
 
+  // all available cities.
+  const cities = [
+    'Randomize',
+    'Albuquerque, NM',
+    'Anaheim, CA',
+    'Anchorage, AK',
+    'Atlanta, GA',
+    'Austin, TX',
+    'Baltimore, MD',
+    'Boise, ID',
+    'Boston, MA',
+    'Buffalo, NY',
+    'Charlotte, NC',
+    'Chicago, IL',
+    'Cincinnati, OH',
+    'Cleveland, OH',
+    'Columbus, OH',
+    'Dallas, TX',
+    'Denton, TX',
+    'Denver, CO',
+    'Des Moines, IA',
+    'Detroit, MI',
+    'Henderson, NV',
+    'Honolulu, HI',
+    'Houston, TX',
+    'Indianapolis, IN',
+    'Jacksonville, FL',
+    'Juneau, AK',
+    'Kansas City, MO',
+    'Las Vegas, NV',
+    'Lexington, KY',
+    'Little Rock, AR',
+    'Long Beach, CA',
+    'Los Angeles, CA',
+    'Louisville, KY',
+    'Madison, WI',
+    'Memphis, TN',
+    'Miami, FL',
+    'Milwaukee, WI',
+    'Minneapolis, MN',
+    'Nashville, TN',
+    'New Orleans, LA',
+    'New York, NY',
+    'Oakland, CA',
+    'Oklahoma City, OK',
+    'Omaha, NE',
+    'Orlando, FL',
+    'Philadelphia, PA',
+    'Phoenix, AZ',
+    'Pittsburgh, PA',
+    'Portland, OR',
+    'Providence, RI',
+    'Raleigh, NC',
+    'Reno, NV',
+    'Richmond, VA',
+    'Sacramento, CA',
+    'Salt Lake City, UT',
+    'San Antonio, TX',
+    'San Diego, CA',
+    'San Francisco, CA',
+    'San Jose, CA',
+    'Seattle, WA',
+    'St. Louis, MO',
+    'St. Paul, MN',
+    'Tampa, FL',
+    'Tucson, AZ',
+    'Virginia Beach, VA',
+    'Washington, DC',
+  ]
+
   const milesToKm = 1.60934;
 
   // Set State Variables
@@ -46,7 +116,17 @@ function App() {
     }
     let isNum = /^\d+$/.test(maxDistanceString);
     if (isNum) {
-      return true;
+      // The input is fine. Now we need to change the starting city if it is randomized.
+      var newCity = startingCity;
+      if (newCity === 'Randomize') {
+        while (newCity === 'Randomize') {
+          // select a random city.
+          newCity = cities[Math.floor(Math.random() * cities.length)];
+        }
+        console.log('Randomly generated starting city:')
+        console.log(newCity);
+      }
+      return newCity;
     }
     alert("Distance field must be filled with only contain numeric characters!");
     return false;
@@ -76,20 +156,24 @@ function App() {
   };
 
   const submitButtonAction = async () => {
-    if (validateInput(maxDistance)) {
+    const city = validateInput(maxDistance);
+    if (city != false) {
       var distance = parseInt(maxDistance, 10);
       // Since all the distances in the server are in km, may need to convert.
       if (units === 'mi') {
         distance *= milesToKm;
       }
-      const apiResult = await fetchRoadTrip(startingCity, distance);
+      const apiResult = await fetchRoadTrip(city, distance);
       const roadTripPath = apiResult['path']
       const errorMessage = apiResult['errorMsg']
       if (roadTripPath.length > 0) {
         // Need to update the props of the cities and parks.
         const startCity = roadTripPath[0]
-        const endCity = roadTripPath[-1]
+        const endCity = roadTripPath.slice(-1)[0] 
         const parks = roadTripPath.slice(1, -1);
+        console.log(startCity);
+        console.log(endCity);
+        console.log(parks);
       }
       else {
         alert(errorMessage + "\n" + "Please try increasing the maximum distance.");

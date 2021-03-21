@@ -3,7 +3,7 @@ import DistanceCounter from './DistanceCounter';
 import { FaMapMarkerAlt } from "react-icons/fa";
 import './CityCard.css'
 
-const CityCard = ({type}) => {
+const CityCard = ({type, cityName, distance}) => {
 
     const ending = (type==='Ending') ? true : false
 
