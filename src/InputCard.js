@@ -3,7 +3,7 @@ import {Card, Button, Form, Col} from "react-bootstrap"
 import './InputCard.css'
 
 
-const InputCard = () => {
+const InputCard = ({updateCity, updateDistance, updateUnits, submitAction}) => {
 
   const logCity = (city) => {
       console.log('City: ' + city)
@@ -35,14 +35,14 @@ const InputCard = () => {
                             <Form.Label>Starting City</Form.Label>
                             <Form.Control 
                                 as="select" 
-                                onChange = { (event) => { console.log(event.target.value) } }
+                                onChange = { (event) => { updateCity(event.target.value) } }
                                 onKeyPress={(event) => { event.key === 'Enter' && event.preventDefault(); }}
                                 defaultValue="Randomize">
                                 
                                 <option>Randomize</option>
-                                <option>City1</option>
-                                <option>City2</option>
-                                <option>City3</option>
+                                <option>San Francisco, CA</option>
+                                <option>Chicago, IL</option>
+                                <option>Salt Lake City, UT</option>
                                 <option>BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB</option>
                             </Form.Control>
                             <Form.Text id="startingCityHelpBlock" muted>
@@ -55,7 +55,7 @@ const InputCard = () => {
                             <Form.Label>Maximum Driving Distance </Form.Label>
                             <Form.Control 
                                 type="distance" 
-                                onKeyUp= { (event) => { onKeyUp(event) } }
+                                onKeyUp= { (event) => { updateDistance(event.target.value) } }
                                 onKeyPress={(event) => { event.key === 'Enter' && event.preventDefault(); }}
                                 placeholder="Distance"/>
                             <Form.Text id="distanceHelpBlock" muted>
@@ -68,7 +68,7 @@ const InputCard = () => {
                             <Form.Label>Units</Form.Label>
                             <Form.Control 
                                 as="select" 
-                                onChange = { (event) => { console.log(event.target.value) } }
+                                onChange = { (event) => { updateUnits(event.target.value) } }
                                 onKeyPress={(event) => { event.key === 'Enter' && event.preventDefault(); }}
                                 defaultValue="mi">
                                     <option>mi</option>
@@ -84,7 +84,7 @@ const InputCard = () => {
                     <Col xs="auto">
 
                         <Form.Group as={Col} controlId="submitButton">
-                            <Button variant="primary" type="submit">
+                            <Button variant="primary" onClick={submitAction}>
                                 Submit
                             </Button>
                         </Form.Group>
