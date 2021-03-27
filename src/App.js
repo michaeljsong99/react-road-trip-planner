@@ -88,15 +88,43 @@ function App() {
 
   // Set State Variables
   const [startingCity, setStartingCity] = useState('Randomize');
+  const [endingCity, setEndingCity] = useState(null);
   const [maxDistance, setMaxDistance] = useState(null);
   const [units, setUnits] = useState('mi');
   const [isFetching, setIsFetching] = useState(false);
   const [path, setPath] = useState([]);
   const [errorMsg, setErrorMsg] = useState(null);
+  const [startingCityObject, setStartingCityObject] = useState(null);
+  const [endingCityObject, setEndingCityObject] = useState(null);
 
   const updateStartingCity = (city) => {
     setStartingCity(city);
-    console.log('Starting City: ' + city)
+    console.log('Starting City:')
+    console.log(city);
+  }
+
+  const updateEndingCity = (city) => {
+    setEndingCity(city);
+    console.log('Ending City:')
+    console.log(city);
+  }
+
+  const updateStartingCityObject = (city) => {
+    setStartingCityObject(city);
+    console.log('Starting City Object:')
+    console.log(city);
+  }
+
+  const updateEndingCityObject = (city) => {
+    setEndingCityObject(city);
+    console.log('Ending City Object:')
+    console.log(city);
+  }
+
+  const updatePath= (path) => {
+    setPath(path);
+    console.log('Generated Path:')
+    console.log(path);
   }
 
   const updateMaxDistance = (distance) => {
@@ -171,9 +199,9 @@ function App() {
         const startCity = roadTripPath[0]
         const endCity = roadTripPath.slice(-1)[0] 
         const parks = roadTripPath.slice(1, -1);
-        console.log(startCity);
-        console.log(endCity);
-        console.log(parks);
+        updateStartingCityObject(startCity);
+        updateEndingCityObject(endCity);
+        updatePath(parks);
       }
       else {
         alert(errorMessage + "\n" + "Please try increasing the maximum distance.");
@@ -205,11 +233,11 @@ function App() {
           </InputCard>
         </Zoom>
         <Zoom>
-          <CityCard type='Starting'></CityCard>
+          <CityCard type='Starting' cityObject={startingCityObject}></CityCard>
           <ParkCard></ParkCard>
           <ParkCard></ParkCard>
           <ParkCard></ParkCard>
-          <CityCard type='Ending'></CityCard>
+          <CityCard type='Ending' cityObject={endingCityObject}></CityCard>
         </Zoom>
     </div>
   );

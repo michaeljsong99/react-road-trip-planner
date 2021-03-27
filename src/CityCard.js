@@ -3,16 +3,20 @@ import DistanceCounter from './DistanceCounter';
 import { FaMapMarkerAlt } from "react-icons/fa";
 import './CityCard.css'
 
-const CityCard = ({type, cityName, distance}) => {
+const CityCard = ({type, cityObject}) => {
 
+    if (cityObject === null) {
+        return null;
+    }
     const ending = (type==='Ending') ? true : false
-
+    const cityName = cityObject['name']
+    const distance = cityObject['next_distance']
     return (
       <div style={{marginBottom: 200}}>
-          <div className='cityName'>{<FaMapMarkerAlt style={{marginRight:50}}/>} {type} City: San Francisco, CA 
+          <div className='cityName'>{<FaMapMarkerAlt style={{marginRight:50}}/>} {type} City: {cityName}
             {<FaMapMarkerAlt style={{marginLeft:50}}/>}    </div>
           <div style={{marginTop: 50}}>
-            <DistanceCounter distance={1000} units={'km'} total={ending}>
+            <DistanceCounter distance={distance} units={'km'} total={ending}>
               </DistanceCounter>
           </div>
       </div>
