@@ -1,8 +1,8 @@
 import './App.css';
 import CityCard from './CityCard.js';
 import ParkCard from './ParkCard.js';
+import ParkContainer from './ParkContainer.js'
 import InputCard from './InputCard.js'
-import Zoom from 'react-reveal/Zoom';
 import Typewriter from 'typewriter-effect';
 import {Button} from "react-bootstrap";
 import React, {useState} from 'react'
@@ -91,9 +91,7 @@ function App() {
   const [endingCity, setEndingCity] = useState(null);
   const [maxDistance, setMaxDistance] = useState(null);
   const [units, setUnits] = useState('mi');
-  const [isFetching, setIsFetching] = useState(false);
-  const [path, setPath] = useState([]);
-  const [errorMsg, setErrorMsg] = useState(null);
+  const [path, setPath] = useState(null);
   const [startingCityObject, setStartingCityObject] = useState(null);
   const [endingCityObject, setEndingCityObject] = useState(null);
 
@@ -121,10 +119,10 @@ function App() {
     console.log(city);
   }
 
-  const updatePath= (path) => {
-    setPath(path);
+  const updatePath = (pathObject) => {
+    setPath(pathObject);
     console.log('Generated Path:')
-    console.log(path);
+    console.log(pathObject);
   }
 
   const updateMaxDistance = (distance) => {
@@ -162,13 +160,11 @@ function App() {
 
   // API Call to get the road trip.
   const fetchRoadTrip = async (city, distance) => {
-    setIsFetching(true);
     const url = `/api?start_city=${city}&max_distance=${distance}`
     console.log(url)
     const response = await fetch(url);
     const result = await response.json();
     console.log(result)
-    setIsFetching(false);
     var apiResult = {
       'path': [],
       'errorMsg': null
@@ -209,9 +205,15 @@ function App() {
     }
   }
 
+  const resetData = () => {
+    setPath(null);
+    setStartingCityObject(null);
+    setEndingCityObject(null);
+  }
+
   return (
     <div className="App">
-        <Button className="App-resetButton">Reset</Button>
+        <Button className="App-resetButton" onClick={resetData}>Reset</Button>
         <div className="App-typewriter">
           <Typewriter
             options={{
@@ -224,21 +226,15 @@ function App() {
             }}
           />
         </div>
-        <Zoom>
-          <InputCard 
-            updateCity={updateStartingCity} 
-            updateDistance={updateMaxDistance} 
-            updateUnits={updateUnits}
-            submitAction={submitButtonAction}>
-          </InputCard>
-        </Zoom>
-        <Zoom>
-          <CityCard type='Starting' cityObject={startingCityObject}></CityCard>
-          <ParkCard></ParkCard>
-          <ParkCard></ParkCard>
-          <ParkCard></ParkCard>
-          <CityCard type='Ending' cityObject={endingCityObject}></CityCard>
-        </Zoom>
+        <InputCard 
+          updateCity={updateStartingCity} 
+          updateDistance={updateMaxDistance} 
+          updateUnits={updateUnits}
+          submitAction={submitButtonAction}>
+        </InputCard>
+        <CityCard type='Starting' cityObject={startingCityObject}></CityCard>
+        <ParkContainer parks={path}></ParkContainer>
+        <CityCard type='Ending' cityObject={endingCityObject}></CityCard>
     </div>
   );
 }

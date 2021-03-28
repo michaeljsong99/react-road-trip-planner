@@ -1,5 +1,6 @@
 import {React, useState, useRef} from "react"
 import {Card, Button, Form, Col} from "react-bootstrap"
+import Zoom from 'react-reveal/Zoom';
 import './InputCard.css'
 
 
@@ -24,6 +25,7 @@ const InputCard = ({updateCity, updateDistance, updateUnits, submitAction}) => {
 
   const renderCard = () => {
       return (
+        <Zoom>
         <Card className="mainCard">
             <Card.Body>
                 <Card.Title>Road Trip Parameters</Card.Title>             
@@ -92,6 +94,7 @@ const InputCard = ({updateCity, updateDistance, updateUnits, submitAction}) => {
                 </Form.Row>
             </Form>
         </Card>
+        </Zoom>
       )
   }
 

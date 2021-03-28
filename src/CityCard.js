@@ -1,6 +1,7 @@
 import React from "react"
 import DistanceCounter from './DistanceCounter';
 import { FaMapMarkerAlt } from "react-icons/fa";
+import Zoom from 'react-reveal/Zoom';
 import './CityCard.css'
 
 const CityCard = ({type, cityObject}) => {
@@ -12,6 +13,7 @@ const CityCard = ({type, cityObject}) => {
     const cityName = cityObject['name']
     const distance = cityObject['next_distance']
     return (
+      <Zoom>
       <div style={{marginBottom: 200}}>
           <div className='cityName'>{<FaMapMarkerAlt style={{marginRight:50}}/>} {type} City: {cityName}
             {<FaMapMarkerAlt style={{marginLeft:50}}/>}    </div>
@@ -20,6 +22,7 @@ const CityCard = ({type, cityObject}) => {
               </DistanceCounter>
           </div>
       </div>
+      </Zoom>
     );
   }
   

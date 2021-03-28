@@ -7,23 +7,33 @@ import { FaMountain } from "react-icons/fa";
 import './ParkCard.css';
 
 
-const ParkCard = () => {
+const ParkCard = (parkInfo) => {
+
+  if (parkInfo===null) {
+    return null
+  }
+
+  const park = parkInfo.parkInfo
+  const index = parkInfo.parkNum
+  console.log('ParkCard!')
+  console.log(park)
+  console.log(index)
 
   const renderCard = () => {
       return (
-        <ImageSlider slides={SliderData}/>
+        <ImageSlider slides={park.photos}/>
       )
   }
 
   return (
     <div style={{marginBottom: 200}}>
-        <div className='parkName'>{<FaMountain style={{marginRight:50}}/>} National Park 1, CA
+        <div className='parkName'>{<FaMountain style={{marginRight:50}}/>} Park {index}: {park.name}, {park.state}
           {<FaMountain style={{marginLeft:50}}/>}
         </div>
-        <GoogleRating rating={4.7} numRatings={7800}></GoogleRating>
+        <GoogleRating rating={park.rating} numRatings={park.num_reviews}></GoogleRating>
         {renderCard()}
         <div style={{marginTop: 50}}>
-          <DistanceCounter distance={1000} units={'km'}>
+          <DistanceCounter distance={park.next_distance} units={'km'}>
             </DistanceCounter>
         </div>
     </div>
