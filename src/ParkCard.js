@@ -1,9 +1,9 @@
 import React from "react"
 import ImageSlider from "./ImageSlider.js"
-import {SliderData} from './SliderData.js';
 import GoogleRating from './GoogleRating';
 import DistanceCounter from './DistanceCounter';
 import { FaMountain } from "react-icons/fa";
+import {convertDistance} from './Utils.js';
 import './ParkCard.css';
 
 
@@ -15,9 +15,13 @@ const ParkCard = (parkInfo) => {
 
   const park = parkInfo.parkInfo
   const index = parkInfo.parkNum
+  const units = parkInfo.distUnits
   console.log('ParkCard!')
   console.log(park)
   console.log(index)
+  console.log('Units:' + units)
+
+  const distance = convertDistance(park.next_distance, units);
 
   const renderCard = () => {
       return (
@@ -33,7 +37,7 @@ const ParkCard = (parkInfo) => {
         <GoogleRating rating={park.rating} numRatings={park.num_reviews}></GoogleRating>
         {renderCard()}
         <div style={{marginTop: 50}}>
-          <DistanceCounter distance={park.next_distance} units={'km'}>
+          <DistanceCounter distance={distance} units={units}>
             </DistanceCounter>
         </div>
     </div>

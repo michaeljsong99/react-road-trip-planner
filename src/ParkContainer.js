@@ -1,7 +1,7 @@
 import Zoom from 'react-reveal/Zoom';
 import ParkCard from './ParkCard';
 
-const ParkContainer = ({parks}) => {
+const ParkContainer = ({parks, distUnits}) => {
 
     if (parks===null) {
         return null
@@ -11,14 +11,12 @@ const ParkContainer = ({parks}) => {
         return null;
     }
 
-    console.log(parks.length);
-
     return (
         <section>
             {parks.map((park, index) => {
                 return (
                     <Zoom>
-                        <ParkCard parkInfo={park} key={index} parkNum={index+1}></ParkCard>
+                        <ParkCard parkInfo={park} key={index} parkNum={index+1} distUnits={distUnits}></ParkCard>
                     </Zoom>
                 )
             })}

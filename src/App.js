@@ -5,6 +5,7 @@ import ParkContainer from './ParkContainer.js'
 import InputCard from './InputCard.js'
 import Typewriter from 'typewriter-effect';
 import {Button} from "react-bootstrap";
+import {milesToKm} from "./Utils.js";
 import React, {useState} from 'react'
 
 function App() {
@@ -84,7 +85,6 @@ function App() {
     'Washington, DC',
   ]
 
-  const milesToKm = 1.60934;
 
   // Set State Variables
   const [startingCity, setStartingCity] = useState('Randomize');
@@ -232,9 +232,9 @@ function App() {
           updateUnits={updateUnits}
           submitAction={submitButtonAction}>
         </InputCard>
-        <CityCard type='Starting' cityObject={startingCityObject}></CityCard>
-        <ParkContainer parks={path}></ParkContainer>
-        <CityCard type='Ending' cityObject={endingCityObject}></CityCard>
+        <CityCard type='Starting' cityObject={startingCityObject} distUnits={units}></CityCard>
+        <ParkContainer parks={path} distUnits={units}></ParkContainer>
+        <CityCard type='Ending' cityObject={endingCityObject} distUnits={units}></CityCard>
     </div>
   );
 }
