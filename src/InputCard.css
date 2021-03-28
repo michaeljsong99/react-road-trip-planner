@@ -6,5 +6,6 @@
     width: 90%;
     border-radius: 10px;
     font-family: 'Quicksand', sans-serif;
+    font-size: large;
     z-index: 2;
   }

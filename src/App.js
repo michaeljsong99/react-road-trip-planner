@@ -209,6 +209,24 @@ function App() {
     setEndingCityObject(null);
   }
 
+  const completionMsg = () => {
+    if (path === null) {
+      return null;
+    }
+    return (<div className="App-typewriter" style={{marginBottom: 100}}>
+    <Typewriter
+      options={{
+        strings: ['Road Trip generation complete! Scroll down to browse the itinerary.'],
+        autoStart: true,
+        loop: false,
+        delay: 10,
+        deleteSpeed: 10,
+        pauseFor: 200000,
+      }}
+    />
+  </div>)
+  }
+
   return (
     <div className="App">
         <Button className="App-resetButton" onClick={resetData}>Reset</Button>
@@ -231,6 +249,7 @@ function App() {
           updateUnits={updateUnits}
           submitAction={submitButtonAction}>
         </InputCard>
+        {completionMsg()}
         <CityCard type='Starting' cityObject={startingCityObject} distUnits={units}></CityCard>
         <ParkContainer parks={path} distUnits={units}></ParkContainer>
         <CityCard type='Ending' cityObject={endingCityObject} distUnits={units}></CityCard>
