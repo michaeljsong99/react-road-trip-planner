@@ -161,10 +161,8 @@ function App() {
   // API Call to get the road trip.
   const fetchRoadTrip = async (city, distance) => {
     const url = `/api?start_city=${city}&max_distance=${distance}`
-    console.log(url)
     const response = await fetch(url);
     const result = await response.json();
-    console.log(result)
     var apiResult = {
       'path': [],
       'errorMsg': null
@@ -227,6 +225,7 @@ function App() {
           />
         </div>
         <InputCard 
+          allCities={cities}
           updateCity={updateStartingCity} 
           updateDistance={updateMaxDistance} 
           updateUnits={updateUnits}
