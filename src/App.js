@@ -160,7 +160,8 @@ function App() {
 
   // API Call to get the road trip.
   const fetchRoadTrip = async (city, distance) => {
-    const url = `/api?start_city=${city}&max_distance=${distance}`
+    const base = 'https://road-trip-generator.herokuapp.com'
+    const url = base + `/api?start_city=${city}&max_distance=${distance}`
     const response = await fetch(url);
     const result = await response.json();
     var apiResult = {
